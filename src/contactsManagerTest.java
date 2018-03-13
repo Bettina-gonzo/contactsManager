@@ -136,7 +136,10 @@ public class contactsManagerTest {
         String userInput = ""; //empty input
         try {
             Path path = Paths.get("src/ContactsArray.java"); // creating path for file and file name
-            BufferedReader file = new BufferedReader(new FileReader("src/ContactsArray.java")); //
+
+            //java BufferedReading class is used to read the text from a character-based input stream.
+            //here we are using it to read data line by line by the readLine() method in the while loop below
+            BufferedReader file = new BufferedReader(new FileReader("src/ContactsArray.java"));
             if (!Files.exists(path)) {
                 System.out.println("Cannot execute your request, file doesn't exist"); //cannot delete from file if it does not exist
             } else if (Files.exists(path)) {
@@ -149,23 +152,22 @@ public class contactsManagerTest {
                 if (contact.getFullName().equalsIgnoreCase(String.format("%s %s",userNameDelete, userLastDelete))){ //getting existing contact to see if it matches user input of first and last name
                     System.out.printf("%-20s   |   %s\n\n",contact.getFullName(),contact.getPhoneNumber()); //displays contact that will be deleted
 
-                    List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8); //
                     String lineToDelete = String.format("%20s(\"%s %s\",\"%s\"),", "new Contacts", userNameDelete, userLastDelete, contact.getPhoneNumber()); //variable for line to delete with format attached
 
-                    while ((line = file.readLine()) != null) //
+                    while ((line = file.readLine()) != null) //reading line by line with file.readLine() method
                     {
 
-                        if (line.contains(lineToDelete)) //if the line is equal to the line the user is seeking to delete, this will run
+                        if (line.contains(lineToDelete)) //if the line is equal to the line the user is seeking to delete, this will run then line is equal to empty space below
                         {
                             line = "";
                             System.out.println("Line deleted."); //informing user that line was deleted
                         }
                         userInput += line + '\n'; //creating break in line
                     }
-                    FileOutputStream File = new FileOutputStream("src/ContactsArray.java");
-                    File.write(userInput.getBytes());
-                    file.close();
-                    File.close();
+                    FileOutputStream File = new FileOutputStream("src/ContactsArray.java"); //output stream used for writing data to a file
+                    File.write(userInput.getBytes()); //writing userInput into a sequence of bytes
+                    file.close(); //closing BufferedReader file
+                    File.close(); //closing FileOutputStream file
                 }
             }
         } catch (IOException IOException) {
@@ -192,7 +194,6 @@ public class contactsManagerTest {
 
                         while ((line = file.readLine()) != null)
                         {
-                            //System.out.println(line);
                             if (line.contains(lineToDelete))
                             {
                                 line = "";
