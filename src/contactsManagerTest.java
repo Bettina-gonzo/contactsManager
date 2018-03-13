@@ -133,4 +133,4 @@ public class contactsManagerTest {
             System.err.println("Exception " + IOException);
         }
     }
-}
+} // EOF -> End of file
