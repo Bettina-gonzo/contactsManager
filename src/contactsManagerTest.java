@@ -7,7 +7,7 @@ import java.io.IOException;
 public class contactsManagerTest {
     public static void main(String[] args) throws IOException {
         Scanner input = new Scanner(System.in);
-        Category contacts = new Category();
+        Contacts contacts = new Contacts();
         int userInput;
         String userNewContact;
         String userNewNumber;

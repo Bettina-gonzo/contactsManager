@@ -4,11 +4,11 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
 
-public class Category {
+public class Contacts {
     private String fullName;
     private String phoneNumber;
 
-    public Category(String fullName, String phoneNumber) {
+    public Contacts(String fullName, String phoneNumber) {
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
     }
