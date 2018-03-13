@@ -17,12 +17,12 @@ public class contactsManagerTest {
         openMenu();
     }
 
-    private static void openMenu(){ // menu items
+    private static void openMenu(){ // menu items method
         Scanner input = new Scanner(System.in);
         int userInput;
 
         do{
-            System.out.println("\nWelcome to the Contacts Manager book!\n\n" +
+            System.out.println("\nWelcome to the Contacts Manager book!\n\n" + //display menu
                     "1. View contacts.\n" +
                     "2. Add a new contact.\n" +
                     "3. Search a contact by name.\n" +
@@ -30,9 +30,9 @@ public class contactsManagerTest {
                     "5. Exit.\n" +
                     "Enter an option (1, 2, 3, 4 or 5):\n");
 
-            userInput = input.nextInt();
+            userInput = input.nextInt(); //input for user option
 
-            switch(userInput){
+            switch(userInput){ //switch case for user options
                 case 1:
                     showContact();
                     break;
