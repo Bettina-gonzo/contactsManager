@@ -135,32 +135,32 @@ public class contactsManagerTest {
         String line; //variable for individual line
         String userInput = ""; //empty input
         try {
-            Path path = Paths.get("src/ContactsArray.java");
-            BufferedReader file = new BufferedReader(new FileReader("src/ContactsArray.java"));
+            Path path = Paths.get("src/ContactsArray.java"); // creating path for file and file name
+            BufferedReader file = new BufferedReader(new FileReader("src/ContactsArray.java")); //
             if (!Files.exists(path)) {
-                System.out.println("Cannot execute your request, file doesn't exist");
+                System.out.println("Cannot execute your request, file doesn't exist"); //cannot delete from file if it does not exist
             } else if (Files.exists(path)) {
-                System.out.println("Please enter a first name to delete:");
+                System.out.println("Please enter a first name to delete:"); //prompting user to input first name of contact to delete
                 String userNameDelete = input.nextLine();
-                System.out.println("Please enter a last name to delete");
+                System.out.println("Please enter a last name to delete"); //prompting user to input last name of contact to delete
                 String userLastDelete = input.nextLine();
 
-                for(Contacts contact: contactNew)
-                if (contact.getFullName().equalsIgnoreCase(String.format("%s %s",userNameDelete, userLastDelete))){
-                    System.out.printf("%-20s   |   %s\n\n",contact.getFullName(),contact.getPhoneNumber());
+                for(Contacts contact: contactNew) // searching through array for contacts
+                if (contact.getFullName().equalsIgnoreCase(String.format("%s %s",userNameDelete, userLastDelete))){ //getting existing contact to see if it matches user input of first and last name
+                    System.out.printf("%-20s   |   %s\n\n",contact.getFullName(),contact.getPhoneNumber()); //displays contact that will be deleted
 
-                    List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
-                    String lineToDelete = String.format("%20s(\"%s %s\",\"%s\"),", "new Contacts", userNameDelete, userLastDelete, contact.getPhoneNumber());
+                    List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8); //
+                    String lineToDelete = String.format("%20s(\"%s %s\",\"%s\"),", "new Contacts", userNameDelete, userLastDelete, contact.getPhoneNumber()); //variable for line to delete with format attached
 
-                    while ((line = file.readLine()) != null)
+                    while ((line = file.readLine()) != null) //
                     {
-                        //System.out.println(line);
-                        if (line.contains(lineToDelete))
+
+                        if (line.contains(lineToDelete)) //if the line is equal to the line the user is seeking to delete, this will run
                         {
                             line = "";
-                            System.out.println("Line deleted.");
+                            System.out.println("Line deleted."); //informing user that line was deleted
                         }
-                        userInput += line + '\n';
+                        userInput += line + '\n'; //creating break in line
                     }
                     FileOutputStream File = new FileOutputStream("src/ContactsArray.java");
                     File.write(userInput.getBytes());
