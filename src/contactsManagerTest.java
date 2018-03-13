@@ -1,4 +1,7 @@
 
+import java.io.BufferedReader;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -8,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.io.IOException;
+
 
 public class contactsManagerTest {
 
@@ -39,7 +43,8 @@ public class contactsManagerTest {
                     contactSearch();
                     break;
                 case 4:
-                    contactDelete():
+                    contactDelete();
+                    break;
                 case 5:
                     System.out.println("Thank you and please come back again!");
                     System.exit(0);
@@ -90,6 +95,50 @@ public class contactsManagerTest {
     }
 
     public static void contactDelete(){
+        Scanner input = new Scanner(System.in);
+        String line;
+        String userInput = "";
+        try {
+            Path path = Paths.get("/Users/Gonzo 1/IdeaProjects/contactsManager/src/ContactsArray.java");
+            BufferedReader file = new BufferedReader(new FileReader("/Users/Gonzo 1/IdeaProjects/contactsManager/src/ContactsArray.java"));
+            if (!Files.exists(path)) {
+                System.out.println("Cannot execute your request, file doesn't exist");
+            } else if (Files.exists(path)) {
+                System.out.println("Please enter a first name to delete:");
+                String userNameDelete = input.nextLine();
+                System.out.println("Please enter a last name to delete");
+                String userLastDelete = input.nextLine();
 
+                for(Contacts contact: contactNew)
+                if (contact.getFullName().equalsIgnoreCase(String.format("%s %s",userNameDelete, userLastDelete))){
+                    System.out.printf("%-20s   |   %s\n\n",contact.getFullName(),contact.getPhoneNumber());
+
+                    List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
+                    String lineToDelete = String.format("%20s(\"%s %s\",\"%s\"),", "new Contacts", userNameDelete, userLastDelete, contact.getPhoneNumber());
+
+//                    for (String line: lines)
+//                        if(line.equalsIgnoreCase(lineToDelete)){
+//                            line = "";
+//                            System.out.println("Line contains: " + line);
+//                        }
+                    while ((line = file.readLine()) != null)
+                    {
+                        //System.out.println(line);
+                        if (line.contains(lineToDelete))
+                        {
+                            line = "";
+                            System.out.println("Line deleted.");
+                        }
+                        userInput += line + '\n';
+                    }
+                    FileOutputStream File = new FileOutputStream("/Users/Gonzo 1/IdeaProjects/contactsManager/src/ContactsArray.java");
+                    File.write(userInput.getBytes());
+                    file.close();
+                    File.close();
+                }
+            }
+        } catch (IOException IOException) {
+            System.err.println("Exception " + IOException);
+        }
     }
 }
