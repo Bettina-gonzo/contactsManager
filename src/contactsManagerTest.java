@@ -51,9 +51,9 @@ public class contactsManagerTest {
             }
 
             System.out.println("\nEnter 'y' to continue.");
-            if(input.next().equalsIgnoreCase("y")){
+            if(input.next().toLowerCase().startsWith("y")){
                 openMenu();
-            } else if (!input.nextLine().equalsIgnoreCase("y"))
+            } else
                 System.exit(0);
 
 
