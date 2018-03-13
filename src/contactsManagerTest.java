@@ -38,7 +38,18 @@ public class contactsManagerTest {
                 newContact.add(0, userNewContact);
                 contacts.addContact("src/newContacts.csv", newContact);
                 break;
+            case 3:
+//                Search contact by name
+                System.out.println("Please enter name of contact: ");
+                break;
+            case 4:
+//                delete an existing contact
+
+                break;
+
         }
+
+
 
     }
 }
