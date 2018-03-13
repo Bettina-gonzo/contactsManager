@@ -59,7 +59,7 @@ public class contactsManagerTest {
     public static void addContact() {
         Scanner input = new Scanner(System.in);
         try {
-            Path path = Paths.get("/Users/Gonzo 1/IdeaProjects/contactsManager/src/ContactsArray.java");
+            Path path = Paths.get("src/ContactsArray.java");
             if (!Files.exists(path)) {
                 Files.createFile(path);
             } else if (Files.exists(path)) {
@@ -72,6 +72,7 @@ public class contactsManagerTest {
                 List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
                 int position = 3;
                 String extraline = String.format("%20s(\"%s %s\",\"%s\"),", "new Contacts", userNewFirst, userNewLast, userNewNumber);
+                System.out.println(extraline);
                 lines.add(position, extraline);
                 Files.write(path, lines, StandardCharsets.UTF_8);
             }
@@ -95,8 +96,8 @@ public class contactsManagerTest {
         String line;
         String userInput = "";
         try {
-            Path path = Paths.get("/Users/Gonzo 1/IdeaProjects/contactsManager/src/ContactsArray.java");
-            BufferedReader file = new BufferedReader(new FileReader("/Users/Gonzo 1/IdeaProjects/contactsManager/src/ContactsArray.java"));
+            Path path = Paths.get("src/ContactsArray.java");
+            BufferedReader file = new BufferedReader(new FileReader("src/ContactsArray.java"));
             if (!Files.exists(path)) {
                 System.out.println("Cannot execute your request, file doesn't exist");
             } else if (Files.exists(path)) {
@@ -122,7 +123,7 @@ public class contactsManagerTest {
                         }
                         userInput += line + '\n';
                     }
-                    FileOutputStream File = new FileOutputStream("/Users/Gonzo 1/IdeaProjects/contactsManager/src/ContactsArray.java");
+                    FileOutputStream File = new FileOutputStream("src/ContactsArray.java");
                     File.write(userInput.getBytes());
                     file.close();
                     File.close();
