@@ -1,15 +1,13 @@
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.io.IOException;
-import java.io.InputStream;
 
 public class contactsManagerTest {
     public static void main(String[] args) throws IOException {
         Scanner input = new Scanner(System.in);
-        contactsManager contacts = new contactsManager();
+        Category contacts = new Category();
         int userInput;
         String userNewContact;
         String userNewNumber;

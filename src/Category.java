@@ -4,7 +4,14 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
 
-public class contactsManager {
+public class Category {
+    private String fullName;
+    private String phoneNumber;
+
+    public Category(String fullName, String phoneNumber) {
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+    }
 
     public static void slurp (String filePath, String fileName) throws IOException {
         try{
