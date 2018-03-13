@@ -174,9 +174,8 @@ public class contactsManagerTest {
             System.err.println("Exception " + IOException);
         }
     }
- // EOF -> End of file
 
-    public static void contactUpdate(String updateContact){
+    public static void contactUpdate(String updateContact){ //method for updating contact provided by user
         String line;
         String userInput = "";
         try {
@@ -189,7 +188,6 @@ public class contactsManagerTest {
                     if (contact.getFullName().equalsIgnoreCase(updateContact)){
                         System.out.printf("%-20s   |   %s\n\n",contact.getFullName(),contact.getPhoneNumber());
 
-                        List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
                         String lineToDelete = String.format("%20s(\"%s\",\"%s\"),", "new Contacts", updateContact, contact.getPhoneNumber());
 
                         while ((line = file.readLine()) != null)
