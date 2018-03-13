@@ -11,13 +11,13 @@ import java.io.IOException;
 
 public class contactsManagerTest {
 
-    public static Contacts[] contactNew = ContactsArray.findAll();
+    public static Contacts[] contactNew = ContactsArray.findAll(); // calling array object of contacts
 
-    public static void main(String[] args) {
+    public static void main(String[] args) { // main method
         openMenu();
     }
 
-    private static void openMenu(){
+    private static void openMenu(){ // menu items
         Scanner input = new Scanner(System.in);
         int userInput;
 
@@ -34,7 +34,7 @@ public class contactsManagerTest {
 
             switch(userInput){
                 case 1:
-                    contactNew();
+                    showContact();
                     break;
                 case 2:
                     addContact();
@@ -50,18 +50,22 @@ public class contactsManagerTest {
                     System.exit(0);
             }
             System.out.println("\nEnter 'y' to continue.");
-            if(input.next().toLowerCase().startsWith("y")){
+            if(input.next().toLowerCase().startsWith("y")){  // if user decides to continue, go back to main menu, if not exit.
                 openMenu();
             } else
                 System.exit(0);
         }while(true);
     }
 
-    private static void contactNew() {
-        System.out.printf("%-23s|%15s\n", "Name", "Phone number");
-        System.out.printf("%s\n", "---------------------------------------");
-        for(Contacts contact: contactNew)
-            System.out.printf("%-20s   |   %s\n", contact.getFullName(), contact.getPhoneNumber());
+    private static void showContact(){
+        try {
+            System.out.printf("%-23s|%15s\n", "Name", "Phone number"); // displaying tittle menu
+            System.out.printf("%s\n", "---------------------------------------");
+            for (Contacts contact : contactNew)
+                System.out.printf("%-20s   |   %s\n", contact.getFullName(), contact.getPhoneNumber());
+        } catch (NoSuchFieldError  NosuchFile){
+            System.err.println("Exception " + NosuchFile);
+        }
     }
 
     public static void addContact() {
@@ -97,7 +101,6 @@ public class contactsManagerTest {
                         else openMenu();
                     }
                 }
-
                     System.out.println("Please enter new phone number: ");
                     String userNewNumber = input.next();
                     List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
@@ -106,6 +109,7 @@ public class contactsManagerTest {
                     System.out.println(extraline);
                     lines.add(position, extraline);
                     Files.write(path, lines, StandardCharsets.UTF_8);
+                    System.exit(0);
             }
         } catch (IOException IOException) {
             System.err.println("Exception " + IOException);
