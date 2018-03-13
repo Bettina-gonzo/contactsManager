@@ -5,7 +5,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
 
-public class Contacts {
+public class Contacts { //
     private String fullName;
     private String phoneNumber;
 
