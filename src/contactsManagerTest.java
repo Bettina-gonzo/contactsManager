@@ -1,4 +1,3 @@
-
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -6,12 +5,9 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.io.IOException;
-
 
 public class contactsManagerTest {
 
@@ -116,11 +112,6 @@ public class contactsManagerTest {
                     List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
                     String lineToDelete = String.format("%20s(\"%s %s\",\"%s\"),", "new Contacts", userNameDelete, userLastDelete, contact.getPhoneNumber());
 
-//                    for (String line: lines)
-//                        if(line.equalsIgnoreCase(lineToDelete)){
-//                            line = "";
-//                            System.out.println("Line contains: " + line);
-//                        }
                     while ((line = file.readLine()) != null)
                     {
                         //System.out.println(line);

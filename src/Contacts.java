@@ -29,23 +29,4 @@ public class Contacts {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
-//    public static void slurp (String filePath, String fileName) throws IOException {
-//        try{
-//            List<String> fileContents = Files.readAllLines(Paths.get(filePath,fileName));
-//            String[] newArray = new String[fileContents.size()];
-//            for (int i = 0; i < fileContents.size(); ++i) {
-////                System.out.printf("%s \n",  fileContents.get(i));
-//                newArray[i] = fileContents.get(i);
-//            }
-//            for (String i: newArray)
-//                System.out.println(i.toCharArray());
-//        }catch (RuntimeException RuntimeException){
-//            System.err.println("Exception " + RuntimeException);
-//        }
-//    }
-
-
-
-
 }
