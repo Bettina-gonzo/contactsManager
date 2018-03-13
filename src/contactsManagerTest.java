@@ -62,36 +62,39 @@ public class contactsManagerTest {
             System.out.printf("%-23s|%15s\n", "Name", "Phone number"); // displaying tittle menu
             System.out.printf("%s\n", "---------------------------------------");
             for (Contacts contact : contactNew)
-                System.out.printf("%-20s   |   %s\n", contact.getFullName(), contact.getPhoneNumber());
+                System.out.printf("%-20s   |   %s\n", contact.getFullName(), contact.getPhoneNumber()); // pulling specific contact from array
         } catch (NoSuchFieldError  NosuchFile){
-            System.err.println("Exception " + NosuchFile);
+            System.err.println("Exception " + NosuchFile); // exception message for file not found
         }
     }
 
     public static void addContact() {
-        Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in); // scanning for user input
         try {
-            Path path = Paths.get("src/ContactsArray.java");
+            Path path = Paths.get("src/ContactsArray.java"); //defining path for file and file name
             if (!Files.exists(path)) {
-                Files.createFile(path);
+                Files.createFile(path); //if file does not exist, then we will create a file
             } else if (Files.exists(path)) {
-                System.out.println("Please enter new First name:");
+                System.out.println("Please enter new First name:"); //prompt user to enter first name
                 String userNewFirst = input.next();
-                System.out.println("Please enter new Last name:");
+                System.out.println("Please enter new Last name:"); //prompt user to enter last name
                 String userNewLast = input.next();
-                String fullContactName = String.format("%s %s", userNewFirst, userNewLast);
+                String fullContactName = String.format("%s %s", userNewFirst, userNewLast); // gathering both first and last name into single variable
 
+//                checking if contact already exists logic
                 for(Contacts contact: contactNew) {
-                    if (contact.getFullName().equalsIgnoreCase(fullContactName)) {
-                        System.out.printf("\n%s %s\n\n", contact.getFullName(), "is already in our DB. Do you want to overwrite it? (y/n)");
+                    if (contact.getFullName().equalsIgnoreCase(fullContactName)) { // if the contact the user inserted already exists, then this will run
+                        System.out.printf("\n%s %s\n\n", contact.getFullName(), "is already in our DB. Do you want to overwrite it? (y/n)"); // will prompt user to see if they want to overwrite the contact
 
-                        if(input.next().toLowerCase().startsWith("y")){
+                        if(input.next().toLowerCase().startsWith("y")){ // if yes run this
                             System.out.println("Overwriting....");
-                            contactUpdate(fullContactName);
+                            contactUpdate(fullContactName); // calling contactUpdate method using fullContactName variable as a parameter
+                            //the contactUpdate method will delete user name instance from the file
+                            //once deleted, we will add the updated user to file list
                             System.out.println("Please enter new phone number: ");
                             String userNewNumber = input.next();
-                            List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
-                            int position = 3;
+                            List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8); //reading all lines from file
+                            int position = 3; // default placement position for new user
                             String extraline = String.format("%20s(\"%s %s\",\"%s\"),", "new Contacts", userNewFirst, userNewLast, userNewNumber);
                             System.out.println(extraline);
                             lines.add(position, extraline);
