@@ -14,11 +14,15 @@ public class contactsManagerTest {
     public static Contacts[] contactNew = ContactsArray.findAll();
 
     public static void main(String[] args) throws IOException {
+        openMenu();
+    }
+
+    private static void openMenu(){
         Scanner input = new Scanner(System.in);
         int userInput;
 
         do{
-            System.out.println("Welcome to the Contacts Manager book\n" +
+            System.out.println("\nWelcome to the Contacts Manager book!\n\n" +
                     "1. View contacts.\n" +
                     "2. Add a new contact.\n" +
                     "3. Search a contact by name.\n" +
@@ -45,6 +49,14 @@ public class contactsManagerTest {
                     System.out.println("Thank you and please come back again!");
                     System.exit(0);
             }
+
+            System.out.println("\nEnter 'y' to continue.");
+            if(input.next().equalsIgnoreCase("y")){
+                openMenu();
+            } else if (!input.nextLine().equalsIgnoreCase("y"))
+                System.exit(0);
+
+
         }while(true);
 
     }
