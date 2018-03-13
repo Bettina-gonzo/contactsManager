@@ -126,9 +126,6 @@ public class contactsManagerTest {
             }
     }
 
-//    public static void contactFind(String contactName){
-//
-//    }
 
     public static void contactDelete(){
         Scanner input = new Scanner(System.in);
@@ -151,6 +148,8 @@ public class contactsManagerTest {
 
                     List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
                     String lineToDelete = String.format("%20s(\"%s %s\",\"%s\"),", "new Contacts", userNameDelete, userLastDelete, contact.getPhoneNumber());
+
+                    System.out.println(lineToDelete);
 
                     while ((line = file.readLine()) != null)
                     {
@@ -192,7 +191,7 @@ public class contactsManagerTest {
 
                         while ((line = file.readLine()) != null)
                         {
-                            //System.out.println(line);
+                            System.out.println(line);
                             if (line.contains(lineToDelete))
                             {
                                 line = "";
