@@ -34,19 +34,19 @@ public class contactsManagerTest {
 
             switch(userInput){ //switch case for user options
                 case 1:
-                    showContact();
+                    showContact(); //user entered 1, will display all contacts from array
                     break;
                 case 2:
-                    addContact();
+                    addContact(); //user entered 2, will allow user to add contact to file. Will inform user if contact is already created.
                     break;
                 case 3:
-                    contactSearch();
+                    contactSearch(); //user entered 3, will allow user to search for contact already listed.
                     break;
                 case 4:
-                    contactDelete();
+                    contactDelete(); //user entered 4, will allow user to delete a contact
                     break;
                 case 5:
-                    System.out.println("Thank you and please come back again!");
+                    System.out.println("Thank you and please come back again!"); //user entered 5, will exit program
                     System.exit(0);
             }
             System.out.println("\nEnter 'y' to continue.");
