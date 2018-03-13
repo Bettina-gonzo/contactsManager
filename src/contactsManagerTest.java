@@ -1,4 +1,9 @@
 
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,13 +13,10 @@ public class contactsManagerTest {
 
     public static Contacts[] contactNew = ContactsArray.findAll();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner input = new Scanner(System.in);
         int userInput;
-        String userNewContact;
-        String userNewNumber;
 
-//        Contacts contacts = new Contacts();
         do{
             System.out.println("Welcome to the Contacts Manager book\n" +
                     "1. View contacts.\n" +
@@ -31,15 +33,13 @@ public class contactsManagerTest {
                     contactNew();
                     break;
                 case 2:
-//                    System.out.println("Please enter First and last name, and phone number: ");
-//                    userNewContact = input.next();
-////                System.out.println("Please enter phone number: ");
-////                userNewNumber = input.nextLine();
-//                    input.next();
-//                    List<String> newContact = new ArrayList<>();
-//                    newContact.add(0, userNewContact);
-//                    contacts.addContact("src/newContacts.csv", newContact);
-//                    break;
+                    addContact();
+                    break;
+                case 3:
+                    contactSearch();
+                    break;
+                case 4:
+                    contactDelete():
                 case 5:
                     System.out.println("Thank you and please come back again!");
                     System.exit(0);
@@ -53,5 +53,43 @@ public class contactsManagerTest {
         System.out.printf("%s\n", "---------------------------------------");
         for(Contacts contact: contactNew)
             System.out.printf("%-20s   |   %s\n", contact.getFullName(), contact.getPhoneNumber());
+    }
+
+    public static void addContact() {
+        Scanner input = new Scanner(System.in);
+        try {
+            Path path = Paths.get("/Users/Gonzo 1/IdeaProjects/contactsManager/src/ContactsArray.java");
+            if (!Files.exists(path)) {
+                Files.createFile(path);
+            } else if (Files.exists(path)) {
+                System.out.println("Please enter new First name:");
+                String userNewFirst = input.next();
+                System.out.println("Please enter new Last name:");
+                String userNewLast = input.next();
+                System.out.println("Please enter new phone number: ");
+                String userNewNumber = input.next();
+                List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
+                int position = 3;
+                String extraline = String.format("%20s(\"%s %s\",\"%s\"),", "new Contacts", userNewFirst, userNewLast, userNewNumber);
+                lines.add(position, extraline);
+                Files.write(path, lines, StandardCharsets.UTF_8);
+            }
+        } catch (IOException IOException) {
+            System.err.println("Exception " + IOException);
+        }
+    }
+
+    public static void contactSearch(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please enter a name to search: ");
+        String userName = input.nextLine();
+        for(Contacts contact: contactNew)
+            if (contact.getFullName().equalsIgnoreCase(userName)){
+                System.out.printf("%-20s   |   %s\n\n",contact.getFullName(),contact.getPhoneNumber());
+            }
+    }
+
+    public static void contactDelete(){
+
     }
 }
