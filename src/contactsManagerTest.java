@@ -95,48 +95,45 @@ public class contactsManagerTest {
                             String userNewNumber = input.next();
                             List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8); //reading all lines from file
                             int position = 3; // default placement position for new user
-                            String extraline = String.format("%20s(\"%s %s\",\"%s\"),", "new Contacts", userNewFirst, userNewLast, userNewNumber);
+                            String extraline = String.format("%20s(\"%s %s\",\"%s\"),", "new Contacts", userNewFirst, userNewLast, userNewNumber); //inserting new line on the third line
                             System.out.println(extraline);
-                            lines.add(position, extraline);
-                            Files.write(path, lines, StandardCharsets.UTF_8);
-                            openMenu();
+                            lines.add(position, extraline); //adding new contact in default line and format
+                            Files.write(path, lines, StandardCharsets.UTF_8); //writing new contact to file
+                            openMenu(); //display main menu
                         }
-                        else openMenu();
+                        else openMenu();//if user doesn't want to overwrite, go back to main menu
                     }
                 }
-                    System.out.println("Please enter new phone number: ");
+                    System.out.println("Please enter new phone number: "); //prompting user for new phone number
                     String userNewNumber = input.next();
-                    List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
+                    List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8); //reading all lines in file
                     int position = 3;
                     String extraline = String.format("%20s(\"%s %s\",\"%s\"),", "new Contacts", userNewFirst, userNewLast, userNewNumber);
                     System.out.println(extraline);
                     lines.add(position, extraline);
                     Files.write(path, lines, StandardCharsets.UTF_8);
-                    System.exit(0);
+                    System.exit(0); //exiting program
             }
         } catch (IOException IOException) {
-            System.err.println("Exception " + IOException);
+            System.err.println("Exception " + IOException); //exception if path is not found (contact cannot be added)
         }
     }
 
-    public static void contactSearch(){
+    public static void contactSearch(){  //method for finding the contact in file
         Scanner input = new Scanner(System.in);
-        System.out.println("Please enter a full name to search: ");
+        System.out.println("Please enter a full name to search: "); //prompting user to enter full name for search
         String userName = input.nextLine();
         for(Contacts contact: contactNew)
-            if (contact.getFullName().equalsIgnoreCase(userName)){
-                System.out.printf("%-20s   |   %s\n\n",contact.getFullName(),contact.getPhoneNumber());
+            if (contact.getFullName().equalsIgnoreCase(userName)){ //if the contact exists in the array then it will run
+                System.out.printf("%-20s   |   %s\n\n",contact.getFullName(),contact.getPhoneNumber()); //will print out all contact info in correct format
             }
     }
 
-//    public static void contactFind(String contactName){
-//
-//    }
 
-    public static void contactDelete(){
+    public static void contactDelete(){ //method for deleting existing contact
         Scanner input = new Scanner(System.in);
-        String line;
-        String userInput = "";
+        String line; //variable for individual line
+        String userInput = ""; //empty input
         try {
             Path path = Paths.get("src/ContactsArray.java");
             BufferedReader file = new BufferedReader(new FileReader("src/ContactsArray.java"));
