@@ -168,9 +168,7 @@ public class contactsManagerTest {
             System.err.println("Exception " + IOException);
         }
     }
-<<<<<<< HEAD
-} // EOF -> End of file
-=======
+ // EOF -> End of file
 
     public static void contactUpdate(String updateContact){
         String line;
@@ -208,4 +206,4 @@ public class contactsManagerTest {
         }
     }
 }
->>>>>>> edwin-gonzales
+
