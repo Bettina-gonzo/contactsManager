@@ -3,7 +3,7 @@ public class ContactsArray {
 		return new Contacts[] {
         new Contacts("Bet Trej","666-666-6666"),
         new Contacts("Jordan Leslie","333-444-5555"),
-        new Contacts("Eddie Murphy","999-999-8888"),
+
         new Contacts("Martin Jordan","333-444-5555"),
         new Contacts("Selena Gomez","555-555-5555"),
         new Contacts("Edwin Gonzales","123-444-5555"),
