@@ -1,0 +1,16 @@
+  282  git blame src/contactsManagerTest.java 
+  283  git show 0136202e
+  284  git log --oneline
+  285  git branch -m bettina-backup-just-in-case
+  286  git branch
+  287  git checkout -b bettina-trejo origin/bettina-trejo
+  288  git merge master 
+  289  git status
+  290  git checkout --theirs src/contactsManagerTest.java 
+  291  git checkout --theirs src/ContactsArray.java 
+  292  git add .
+
+
+
+
+for merge conflicts 
