@@ -23,7 +23,6 @@ public class FileDemonstration extends JFrame{
     private File getFile(){
         //display file dialog, so user can choose file to open
         JFileChooser fileChooser = new JFileChooser();
-        JDialog dialog = new JDialog();
 
         fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         int result = fileChooser.showOpenDialog(this);

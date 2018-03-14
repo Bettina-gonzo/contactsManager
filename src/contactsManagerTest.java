@@ -119,16 +119,21 @@ public class contactsManagerTest {
         }
     }
 
-    public static void contactSearch(){  //method for finding the contact in file
+    public static void contactSearch() {  //method for finding the contact in file
+        String foundContact= null;
         Scanner input = new Scanner(System.in);
         System.out.println("Please enter a full name to search: "); //prompting user to enter full name for search
-        String userName = input.nextLine();
-        for(Contacts contact: contactNew)
-            if (contact.getFullName().equalsIgnoreCase(userName)){ //if the contact exists in the array then it will run
-                System.out.printf("%-20s   |   %s\n\n",contact.getFullName(),contact.getPhoneNumber()); //will print out all contact info in correct format
+        String userName = input.next();
+        for (Contacts contact : contactNew) {
+            if (contact.getFullName().startsWith(userName)) { //if the contact exists in the array then it will run
+                foundContact = contact.getFullName();
+                System.out.printf("%-20s   |   %s\n\n", contact.getFullName(), contact.getPhoneNumber()); //will print out all contact info in correct format
             }
+        }
+        if(foundContact == null){
+            System.out.println("Contact not found in our DB.");
+        }
     }
-
 
     public static void contactDelete(){ //method for deleting existing contact
         Scanner input = new Scanner(System.in);
