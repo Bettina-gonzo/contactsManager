@@ -153,7 +153,7 @@ public class contactsManagerTest {
                     System.out.printf("%-20s   |   %s\n\n",contact.getFullName(),contact.getPhoneNumber()); //displays contact that will be deleted
 
                     String lineToDelete = String.format("%20s(\"%s %s\",\"%s\"),", "new Contacts", userNameDelete, userLastDelete, contact.getPhoneNumber()); //variable for line to delete with format attached
-
+                  
                     while ((line = file.readLine()) != null) //reading line by line with file.readLine() method
                     {
 
