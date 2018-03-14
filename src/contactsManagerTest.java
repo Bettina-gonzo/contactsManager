@@ -126,12 +126,12 @@ public class contactsManagerTest {
         String userName = input.next();
         for (Contacts contact : contactNew) {
             if (contact.getFullName().startsWith(userName)) { //if the contact exists in the array then it will run
-                foundContact = contact.getFullName();
+                foundContact = contact.getFullName(); // defining a foundContact variable to gather value of search result.  If null, then it will be sent to if statement outside loop.
                 System.out.printf("%-20s   |   %s\n\n", contact.getFullName(), contact.getPhoneNumber()); //will print out all contact info in correct format
             }
         }
-        if(foundContact == null){
-            System.out.println("Contact not found in our DB.");
+        if(foundContact == null){  // if contact is not found, then it will let the user know the contact is not in our DB.
+            System.out.println("Contact not found in our database.");
         }
     }
 
