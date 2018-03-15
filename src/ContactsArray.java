@@ -3,7 +3,6 @@ public class ContactsArray {
         return new Contacts[] {
         new Contacts("Robert Brandon","444-555-7777"),
         new Contacts("Edwin Gonzales","123-333-6666"),
-
         new Contacts("Martin Jordan","333-444-5555"),
         new Contacts("Selena Gomez","555-555-5555"),
  	    new Contacts("James Butt","504-621-8927"),
@@ -34,7 +33,6 @@ public class ContactsArray {
         new Contacts("Allene Iturbide","715-662-6764"),
         new Contacts("Chanel Caudy","913-388-2079"),
         new Contacts("Ezekiel Chui","410-669-1642"),
-
         new Contacts("Bernardo Figeroa","936-336-3951"),
         new Contacts("Ammie Corrio","614-801-9788"),
         new Contacts("Francine Vocelka","505-977-3911"),
@@ -304,7 +302,6 @@ public class ContactsArray {
         new Contacts("Judy Aquas","269-756-7222"),
         new Contacts("Yvonne Tjepkema","973-714-1721"),
         new Contacts("Kayleigh Lace","337-740-9323"),
-
         new Contacts("Tresa Sweely","314-359-9566"),
         new Contacts("Kristeen Turinetti","817-213-8851"),
         new Contacts("Jenelle Regusters","813-932-8715"),

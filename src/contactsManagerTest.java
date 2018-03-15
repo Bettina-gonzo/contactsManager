@@ -1,13 +1,11 @@
-import java.io.BufferedReader;
-import java.io.FileOutputStream;
-import java.io.FileReader;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-import java.io.IOException;
 
 public class contactsManagerTest {
 
@@ -20,51 +18,68 @@ public class contactsManagerTest {
     private static void openMenu(){ // menu items method
         Scanner input = new Scanner(System.in);
         int userInput;
+        try{
+            do{
+                System.out.println("\nWelcome to the Contacts Manager book!\n\n" + //display menu
+                        "1. View contacts.\n" +
+                        "2. Add a new contact.\n" +
+                        "3. Search a contact by name.\n" +
+                        "4. Delete an existing contact.\n" +
+                        "5. Exit.\n" +
+                        "Enter an option (1, 2, 3, 4 or 5):\n");
 
-        do{
-            System.out.println("\nWelcome to the Contacts Manager book!\n\n" + //display menu
-                    "1. View contacts.\n" +
-                    "2. Add a new contact.\n" +
-                    "3. Search a contact by name.\n" +
-                    "4. Delete an existing contact.\n" +
-                    "5. Exit.\n" +
-                    "Enter an option (1, 2, 3, 4 or 5):\n");
+                userInput = input.nextInt(); //input for user option
+                if(userInput > 5 || userInput < 1){
+                    System.out.println("Please enter an option from 1 to 5!\n");
+                    openMenu();
+                }
 
-            userInput = input.nextInt(); //input for user option
-
-            switch(userInput){ //switch case for user options
-                case 1:
-                    showContact(); //user entered 1, will display all contacts from array
-                    break;
-                case 2:
-                    addContact(); //user entered 2, will allow user to add contact to file. Will inform user if contact is already created.
-                    break;
-                case 3:
-                    contactSearch(); //user entered 3, will allow user to search for contact already listed.
-                    break;
-                case 4:
-                    contactDelete(); //user entered 4, will allow user to delete a contact
-                    break;
-                case 5:
-                    System.out.println("Thank you and please come back again!"); //user entered 5, will exit program
+                switch(userInput){ //switch case for user options
+                    case 1:
+                        showContact(); //user entered 1, will display all contacts from array
+                        break;
+                    case 2:
+                        addContact(); //user entered 2, will allow user to add contact to file. Will inform user if contact is already created.
+                        break;
+                    case 3:
+                        contactSearch(); //user entered 3, will allow user to search for contact already listed.
+                        break;
+                    case 4:
+                        contactDelete(); //user entered 4, will allow user to delete a contact
+                        break;
+                    case 5:
+                        System.out.println("Thank you and please come back again!"); //user entered 5, will exit program
+                        System.exit(0);
+                }
+                System.out.println("\nEnter 'y' to continue.");
+                if(input.next().toLowerCase().startsWith("y")){  // if user decides to continue, go back to main menu, if not exit.
+                    openMenu();
+                } else if(input.next().toLowerCase().startsWith("n")){
                     System.exit(0);
-            }
-            System.out.println("\nEnter 'y' to continue.");
-            if(input.next().toLowerCase().startsWith("y")){  // if user decides to continue, go back to main menu, if not exit.
-                openMenu();
-            } else
-                System.exit(0);
-        }while(true);
+                }
+                else
+                    openMenu();
+            }while(true);
+        } catch (InputMismatchException wrongInput){
+            System.out.printf("%s %s, please enter an integer" , "Exception", wrongInput);
+            openMenu();
+        }
+
     }
 
     private static void showContact(){
         try {
             System.out.printf("%-23s|%15s\n", "Name", "Phone number"); // displaying tittle menu
             System.out.printf("%s\n", "---------------------------------------");
+            Path path = Paths.get("src/ContactsArray.java");
+            Files.exists(path);
+            FileOutputStream File = new FileOutputStream("src/ContactsArray.java");
             for (Contacts contact : contactNew)
                 System.out.printf("%-20s   |   %s\n", contact.getFullName(), contact.getPhoneNumber()); // pulling specific contact from array
         } catch (NoSuchFieldError  NosuchFile){
             System.err.println("Exception " + NosuchFile); // exception message for file not found
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -72,6 +87,7 @@ public class contactsManagerTest {
         Scanner input = new Scanner(System.in); // scanning for user input
         try {
             Path path = Paths.get("src/ContactsArray.java"); //defining path for file and file name
+
             if (!Files.exists(path)) {
                 Files.createFile(path); //if file does not exist, then we will create a file
             } else if (Files.exists(path)) {
@@ -112,7 +128,8 @@ public class contactsManagerTest {
                     System.out.println(extraline);
                     lines.add(position, extraline);
                     Files.write(path, lines, StandardCharsets.UTF_8);
-                    System.exit(0); //exiting program
+//                    showContact();
+//                    System.exit(0) ; //exiting program
             }
         } catch (IOException IOException) {
             System.err.println("Exception " + IOException); //exception if path is not found (contact cannot be added)
@@ -127,7 +144,7 @@ public class contactsManagerTest {
         for (Contacts contact : contactNew) {
             if (contact.getFullName().startsWith(userName)) { //if the contact exists in the array then it will run
                 foundContact = contact.getFullName(); // defining a foundContact variable to gather value of search result.  If null, then it will be sent to if statement outside loop.
-                System.out.printf("%-20s   |   %s\n\n", contact.getFullName(), contact.getPhoneNumber()); //will print out all contact info in correct format
+                System.out.printf("%-20s   |   %s\n", contact.getFullName(), contact.getPhoneNumber()); //will print out all contact info in correct format
             }
         }
         if(foundContact == null){  // if contact is not found, then it will let the user know the contact is not in our DB.
@@ -208,6 +225,7 @@ public class contactsManagerTest {
                         file.close();
                         File.close();
                     }
+
             }
         } catch (IOException IOException) {
             System.err.println("Exception " + IOException);
