@@ -1,8 +1,8 @@
 public class ContactsArray {
 	public static Contacts[] findAll() {
         return new Contacts[] {
+        new Contacts("Edwin Gonzales","123-333-4444"),
         new Contacts("Robert Brandon","444-555-7777"),
-        new Contacts("Edwin Gonzales","123-333-6666"),
         new Contacts("Martin Jordan","333-444-5555"),
         new Contacts("Selena Gomez","555-555-5555"),
  	    new Contacts("James Butt","504-621-8927"),
