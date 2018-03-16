@@ -1,19 +1,25 @@
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+
 public class ShowContact {
 
     public void getContact(){
         try {
-            System.out.printf("%-23s|%15s\n", "Name", "Phone number"); // displaying tittle menu
+            System.out.printf("%-23s|%15s\n", "Name", "Phone number");
             System.out.printf("%s\n", "---------------------------------------");
-//            Path path = Paths.get("src/ContactsArray.java");
-//            Files.exists(path);
-//            FileOutputStream File = new FileOutputStream("src/ContactsArray.java");
-            for (Contacts contact : ContactsArray.findAll())
-            System.out.printf("%-20s   |   %s\n", contact.getFullName(), contact.getPhoneNumber()); // pulling specific contact from array
-        } catch (NoSuchFieldError  NosuchFile){
-            System.err.println("Exception " + NosuchFile); // exception message for file not found
+            Path path = Paths.get("src/contacts.txt");
+            if(Files.exists(path)){
+                List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
+                for(int i = 0; i < lines.size(); i ++){
+                    System.out.printf("%s\n", lines.get(i));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-//        catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 }
